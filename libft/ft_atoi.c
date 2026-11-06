@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 15:36:24 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/06 16:48:35 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/06 19:44:56 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_atoi(const char *nptr)
 {
 	int		number;
 	char	sign;
-	
+
 	number = 0;
 	sign = '+';
 	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
