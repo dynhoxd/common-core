@@ -6,26 +6,26 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 17:42:12 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/07 21:29:33 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/07 21:38:35 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_count_words(char const *s, char sep)
+static size_t	ft_count_str(char const *s, char sep)
 {
 	size_t	i;
-	size_t	words;
+	size_t	str;
 
 	i = 0;
-	words = 0;
+	str = 0;
 	while (s[i])
 	{
 		if (s[i] != sep && (i == 0 || s[i - 1] == sep))
-			words++;
+			str++;
 		i++;
 	}
-	return (words);
+	return (str);
 }
 
 static size_t	strclen(char const *s, char end)
@@ -52,7 +52,7 @@ char	**ft_split(char const *s, char c)
 	
 	if (!s)
 		return (NULL);
-	arr = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	arr = malloc(sizeof(char *) * (ft_count_str(s, c) + 1));
 	if (!arr)
 		return (NULL);
 	i = 0;
