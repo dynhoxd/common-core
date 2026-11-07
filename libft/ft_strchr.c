@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 16:48:12 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/05 15:56:08 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/07 17:33:54 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ char	*ft_strchr(const char *s, int c)
 	}
 	if (ch == '\0')
 		return ((char *)s);
-	return (0);
+	return (NULL);
 }
