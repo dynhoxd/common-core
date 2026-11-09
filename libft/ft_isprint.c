@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 17:33:21 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/04 15:30:23 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/09 22:21:25 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	ft_isprint(int n)
 {
-	unsigned char	c;
-
-	c = n;
-	if (c >= 32 && c <= 126)
+	if (n >= 32 && n <= 126)
 		return (1);
 	return (0);
 }

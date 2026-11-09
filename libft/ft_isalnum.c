@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 17:10:14 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/04 15:27:56 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/09 22:21:03 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	ft_isalnum(int n)
 {
-	unsigned char	c;
-
-	c = n;
 	if (ft_isalpha(n) == 1 || ft_isdigit(n) == 1)
 		return (1);
 	return (0);

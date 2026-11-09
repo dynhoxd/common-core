@@ -6,15 +6,13 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 16:01:19 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/04 15:53:04 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/09 21:46:29 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(char *str);
-
-int	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	int	i;
 

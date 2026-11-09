@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 13:23:41 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/04 15:38:04 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/09 22:27:00 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,10 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	s = (const unsigned char *)src;
 	if (d > s && d < (s + n))
 	{
-		d += n;
-		s += n;
 		while (n--)
-			*d-- = *s--;
+			d[n] = s[n];
 	}
 	else
-	{
-		while (n)
-		{
-			*d++ = *s++;
-			n--;
-		}
-	}
+		ft_memcpy(dest, src, n);
 	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 16:58:02 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/04 15:29:54 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/09 22:20:37 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	ft_isdigit(int n)
 {
-	unsigned char	c;
-
-	c = n;
-	if (c >= '0' && c <= '9')
+	if (n >= '0' && n <= '9')
 		return (1);
 	return (0);
 }

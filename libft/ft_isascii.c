@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 17:29:49 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/04 15:29:19 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/09 22:20:53 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	ft_isascii(int n)
 {
-	unsigned char	c;
-
-	c = n;
-	if (c >= 0 && c <= 127)
+	if (n >= 0 && n <= 127)
 		return (1);
 	return (0);
 }
