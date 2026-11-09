@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 17:42:12 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/07 21:38:35 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/09 17:38:20 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static size_t	ft_count_str(char const *s, char sep)
 	return (str);
 }
 
-static size_t	strclen(char const *s, char end)
+static size_t	ft_strclen(char const *s, char end)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (s[i] && s[i] != end)
 		i++;
@@ -49,7 +49,7 @@ char	**ft_split(char const *s, char c)
 {
 	size_t	i;
 	char	**arr;
-	
+
 	if (!s)
 		return (NULL);
 	arr = malloc(sizeof(char *) * (ft_count_str(s, c) + 1));
@@ -60,11 +60,11 @@ char	**ft_split(char const *s, char c)
 	{
 		if (*s != c)
 		{
-			arr[i] = ft_substr(s, 0, strclen(s, c));
+			arr[i] = ft_substr(s, 0, ft_strclen(s, c));
 			if (!arr[i])
 				return (ft_free_arr(arr, i), NULL);
 			i++;
-			s += strclen(s, c);
+			s += ft_strclen(s, c);
 		}
 		else
 			s++;
