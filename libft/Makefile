@@ -6,7 +6,7 @@
 #    By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/03 14:52:40 by jabernar          #+#    #+#              #
-#    Updated: 2026/11/09 22:50:22 by jabernar         ###   ########.fr        #
+#    Updated: 2026/11/10 16:26:55 by jabernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,17 @@ SRCS = ft_atoi.c \
 	ft_tolower.c \
 	ft_toupper.c \
 	ft_putstr_fd.c \
-	ft_putendl_fd.c
+	ft_putendl_fd.c \
+	ft_putnbr_fd.c \
+	ft_lstnew.c \
+	ft_lstadd_front.c \
+	ft_lstsize.c \
+	ft_lstlast.c \
+	ft_lstadd_back.c \
+	ft_lstdelone.c \
+	ft_lstclear.c \
+	ft_lstiter.c \
+	ft_lstmap.c
 OBJS = $(SRCS:%.c=%.o)
 
 all: $(NAME)
