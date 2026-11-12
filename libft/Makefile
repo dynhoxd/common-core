@@ -6,13 +6,16 @@
 #    By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/03 14:52:40 by jabernar          #+#    #+#              #
-#    Updated: 2026/11/10 16:26:55 by jabernar         ###   ########.fr        #
+#    Updated: 2026/11/12 15:28:50 by jabernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
 CC = cc
+
 FLAGS = -c -Wall -Werror -Wextra
+
 SRCS = ft_atoi.c \
 	ft_bzero.c \
 	ft_calloc.c \
@@ -56,7 +59,20 @@ SRCS = ft_atoi.c \
 	ft_lstclear.c \
 	ft_lstiter.c \
 	ft_lstmap.c
+	
 OBJS = $(SRCS:%.c=%.o)
+
+BONUS_SRCS = ft_lstnew.c \
+	ft_lstadd_front.c \
+	ft_lstsize.c \
+	ft_lstlast.c \
+	ft_lstadd_back.c \
+	ft_lstdelone.c \
+	ft_lstclear.c \
+	ft_lstiter.c \
+	ft_lstmap.c
+	
+BONUS_OBJS = $(BONUS_SRCS:%.c=%.o)
 
 all: $(NAME)
 
@@ -66,6 +82,9 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(CC) $(FLAGS) $< -o $@
 
+bonus: $(OBJS) $(BONUS_OBJS)
+	ar crs $(NAME) $^
+
 clean:
 	rm -f $(OBJS)
 
@@ -74,4 +93,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 16:52:34 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/06 18:28:39 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/12 18:38:38 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 	if (size != 0 && nmemb > SIZE_MAX / size)
 		return (NULL);
-	if (nmemb == 0 || size == 0)
-		return (malloc(1));
 	ptr = malloc(size * nmemb);
 	if (!ptr)
 		return (NULL);
