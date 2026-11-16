@@ -6,7 +6,7 @@
 #    By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/13 18:05:15 by jabernar          #+#    #+#              #
-#    Updated: 2026/11/13 18:09:02 by jabernar         ###   ########.fr        #
+#    Updated: 2026/11/16 21:42:24 by jabernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,11 @@ NAME = libftprintf.a
 
 CC = cc
 
-FLAGS = -c -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
-LIBFTFLAGS = -Llibft -lft -Ilibft 
-
-SRCS = 
+SRCS = ft_printf.c ft_printf_types.c
 	
 OBJS = $(SRCS:%.c=%.o)
-
 
 all: $(NAME)
 
@@ -29,10 +26,7 @@ $(NAME): $(OBJS)
 	ar crs $(NAME) $^
 
 %.o: %.c
-	$(CC) $(FLAGS) $(LIBFTFLAGS) $< -o $@
-
-# bonus: $(OBJS) $(BONUS_OBJS)
-# 	ar crs $(NAME) $^
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
@@ -42,4 +36,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
