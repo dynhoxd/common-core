@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/16 17:25:43 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/16 20:24:23 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/17 16:10:11 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_puthexa(unsigned long n, char base)
 	base_hxl = "0123456789abcdef";
 	base_hxu = "0123456789ABCDEF";
 	count = 0;
-	if (n > 16)
+	if (n >= 16)
 		count = ft_puthexa(n / 16, base);
 	if (base == 'l')
 	{
@@ -69,9 +69,10 @@ int	ft_putptr(void *p)
 	return (count);
 }
 
-int	ft_putnbr_ri(int n)
+int	ft_putnbr_signed(int n)
 {
 	long	nb;
+	char	c;
 	int		count;
 
 	nb = n;
@@ -82,8 +83,21 @@ int	ft_putnbr_ri(int n)
 		nb *= -1;
 	}
 	if (nb > 9)
-		ft_putnbr_ri(nb / 10);
-	nb = (nb % 10) + '0';
-	count += write (1, &nb, 1);
+		count += ft_putnbr_signed(nb / 10);
+	c = (nb % 10) + '0';
+	count += write (1, &c, 1);
+	return (count);
+}
+
+int	ft_putnbr_unsigned(unsigned int n)
+{
+	int		count;
+	char	c;
+
+	count = 0;
+	if (n > 9)
+		count += ft_putnbr_unsigned(n / 10);
+	c = (n % 10) + '0';
+	count += write (1, &c, 1);
 	return (count);
 }

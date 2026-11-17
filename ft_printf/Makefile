@@ -6,7 +6,7 @@
 #    By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/13 18:05:15 by jabernar          #+#    #+#              #
-#    Updated: 2026/11/16 21:42:24 by jabernar         ###   ########.fr        #
+#    Updated: 2026/11/17 16:32:29 by jabernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJS = $(SRCS:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar crs $(NAME) $^
+	ar crs $@ $^
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
@@ -37,3 +37,8 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+# run: $(NAME)
+# 	$(CC) $(FLAGS) $(OBJS) $<
+# 	./a.out
+# 	@rm -f a.out

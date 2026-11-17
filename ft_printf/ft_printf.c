@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 18:11:02 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/16 21:47:16 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/17 16:29:54 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,17 @@ int	ft_type_call(char ch, va_list args)
 	else if (ch == 'p')
 		return (ft_putptr(va_arg(args, void *)));
 	else if (ch == 'd' || ch == 'i')
-		return (ft_putnbr_ri(va_arg(args, int)));
+		return (ft_putnbr_signed(va_arg(args, int)));
 	else if (ch == 'u')
-		return (ft_putnbr_ri((int)va_arg(args, unsigned int)));
+		return (ft_putnbr_unsigned(va_arg(args, unsigned int)));
 	else if (ch == 'x')
 		return (ft_puthexa((unsigned long)va_arg(args, unsigned int), 'l'));
 	else if (ch == 'X')
 		return (ft_puthexa((unsigned long)va_arg(args, unsigned int), 'u'));
 	else if (ch == '%')
 		return (ft_putchar_ri('%'));
-	return (0);
+	else
+		return (ft_putchar_ri('%') + ft_putchar_ri(ch));
 }
 
 int	ft_printf(const char *str, ...)
@@ -49,7 +50,12 @@ int	ft_printf(const char *str, ...)
 	va_start(args, str);
 	while (*str)
 	{
-		if (*str == '%' && *(str + 1))
+		if (*str == '%' && !*(str + 1))
+		{
+			va_end(args);
+			return (-1);
+		}
+		else if (*str == '%')
 		{
 			str++;
 			count += ft_type_call(*str, args);
@@ -101,4 +107,6 @@ int	ft_printf(const char *str, ...)
 
 // 	ft_printf("%p \n", ptr);
 // 	printf("%p \n", ptr);
+
+// 	ft_printf("%abc\n");
 // }
