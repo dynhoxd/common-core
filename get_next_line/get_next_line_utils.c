@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 17:39:24 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/20 17:16:44 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/22 21:34:39 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,88 +16,72 @@ size_t	ft_strlen(char *s)
 {
 	size_t	counter;
 
+	if(!s)
+		return (0);
 	counter = 0;
 	while (*s++)
 		counter++;
 	return (counter);
 }
 
-char	*ft_crline(char *src, size_t size)
+char	*ft_strchr(char *s, int c)
 {
-	char	*line;
-	size_t	i;
+	char	ch;
 
-	line = malloc(size);
-	if (!line)
+	ch = (char)c;
+	if(!s)
+		return (NULL);
+	while (*s)
+	{
+		if (*s == ch)
+			return ((char *)s);
+		s++;
+	}
+	if (ch == '\0')
+		return ((char *)s);
+	return (NULL);
+}
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	s1_len = ft_strlen((char *)s1);
+	s2_len = ft_strlen((char *)s2);
+	str = malloc(s1_len + s2_len + 1);
+	if (!str)
 		return (NULL);
 	i = 0;
-	while (i < size - 2)
+	while (s1[i])
 	{
-		line[i] = src[i];
+		str[i] = s1[i];
 		i++;
 	}
-	line[i++] = '\n';
-	line[i] = '\0';
-	return (line);
-}
-
-void	ft_setzero(char *buffer, size_t start, size_t end)
-{
-	while (start < end)
-		buffer[start++] = '\0';
-}
-
-void	ft_updtbuffer(char *buffer, size_t start, size_t end)
-{
-	size_t	i;
-
-	i = 0;
-	while (start + i < end)
+	while (s2[j])
 	{
-		buffer[i] = buffer[start + i];
-		i++;
+		str[i + j] = s2[j];
+		j++;
 	}
-	ft_setzero(buffer, i, end);
+	str[i + j] = '\0';
+	return (free(s1), free(s2), str);
 }
-
-char	*ft_verify_line(char *line, char *buffer, size_t *bytes_read, int fd)
+char	*ft_substr(char *s, unsigned int start,
+size_t len)
 {
-	size_t		counter;
-	size_t		i;
+	char	*sub;
+	size_t	s_len;
 
-	i = 0;
-	counter = 0;
-	while (i < bytes_read)
-	{
-		if (buffer[i] && buffer[i] != '\n')
-			counter++;
-		else if (buffer[i] && buffer[i] == '\n')
-		{
-			line = ft_crline(buffer, counter + 2);
-			if (!line)
-				return (NULL);
-			if (buffer[++i])
-				ft_updtbuffer(buffer, i, bytes_read);
-			else
-				ft_setzero(buffer, 0, bytes_read);
-			return (line);
-		}
-		i++;
-		if (!(i < bytes_read))
-		{
-			bytes_read = read(fd, buffer, BUFFER_SIZE);
-			if (!bytes_read)
-			{
-				line = ft_crline(buffer, counter + 2);
-				return (line);
-			}
-			else
-			{
-				i = 0;
-				line = ft_crline(buffer, counter);
-			}
-		}
-	}
-	buffer[i] = '\0';
-	return (line);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	sub = malloc(len + 1);
+	if (!sub)
+		return (NULL);
+	ft_strlcpy(sub, &s[start], len + 1);
+	return (sub);
 }

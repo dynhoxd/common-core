@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 17:39:37 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/20 17:07:35 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/22 22:15:38 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(char *s);
-char	*ft_crline(char *src, size_t len);
-void	ft_updtbuffer(char *src, size_t start, size_t end);
-char	*ft_verify_line(char *line, char *buffer, size_t *bytes_read, int fd);
-void	ft_setzero(char *buffer, size_t start, size_t end);
+char	*ft_strchr(char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char const *s, unsigned int start,
+size_t len);
+char	*ckeck_line(char *buf, char *rest, int fd);
 
 #endif
