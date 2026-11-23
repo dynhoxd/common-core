@@ -6,37 +6,60 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/18 19:14:38 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/22 22:29:18 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/23 22:50:08 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*check_line(char **rest, int fd)
+char	*new_rest(char **rest)
 {
-	char	*linebk;
-	char	*line;
+	char	*bl;
 	char	*temp;
-
-	linebk = NULL;
-	linebk = ft_strchr(rest, '\n');
-	if (linebk)
+	
+	if (!rest)
+		return (NULL);
+	bl = ft_strchr(rest, '\n');
+	if (bl && bl + 1)
 	{
-		if (rest[(long)linebk + 1])
-		{
-			temp = ft_strjoin(temp, &rest[(long)linebk + 1]);
-			*rest = temp;
-			line = ft_substr(rest, 0, (linebk - rest) + 2);
-			return (line);
-		}
-		else
-		{
-			line = ft_substr(rest, 0, (linebk - rest) + 1);
-			return (line);
-		}
-		
+		temp = ft_substr(*rest, bl + 1, ft_strlen(bl) + 1);
+		free(*rest);
+		*rest = temp;
 	}
-	return (line);
+	else
+		free(*rest);
+		*rest = NULL;
+	return (*rest);
+}
+
+char *get_line(char *rest, char **line)
+{
+	char	*bl;
+	
+	if (!rest)
+		return (NULL);
+	bl = ft_strchr(rest, '\n');
+	if (bl)
+		*line = ft_substr(rest, 0, (bl - rest) + 1);
+	else
+		*line = ft_substr(rest, 0, ft_strlen(rest) + 1);
+	return (*line);
+}
+
+void	read_and_join(char **rest, int fd, char *buf, int bytes_rd)
+{
+	while (bytes_rd > 0 && (!(*rest) || !ft_strchr(*rest, '\n')))
+	{
+		bytes_rd = read(fd, buf, BUFFER_SIZE);
+		if (bytes_rd == -1)
+			return ;
+		if (bytes_rd > 0)
+		{
+			buf[BUFFER_SIZE] = '\0';
+			*rest = ft_strjoin(*rest, buf);
+		}
+	}
+	return ;
 }
 
 char	*get_next_line(int fd)
@@ -48,10 +71,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	bytes_rd = read(fd, buf, BUFFER_SIZE);
-	if (bytes_rd = -1)
-		return (NULL);
-	rest = ft_strjoin(rest, buf);
-	line = check_line(rest, fd);
+	bytes_rd = 1;
+	read_and_join(&rest, fd, buf, bytes_rd);
+	line = get_line(rest, &line);
+	rest = new_rest(&rest);
+	if ()
 	return (line);
 }

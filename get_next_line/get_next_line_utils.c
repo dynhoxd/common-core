@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 17:39:24 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/22 21:34:39 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/23 22:12:37 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_strchr(char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char **s1, char *s2)
 {
 	size_t	s1_len;
 	size_t	s2_len;
@@ -50,7 +50,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*str;
 
 	s1_len = ft_strlen((char *)s1);
-	s2_len = ft_strlen((char *)s2);
+	s2_len = ft_strlen((char *)*s2);
 	str = malloc(s1_len + s2_len + 1);
 	if (!str)
 		return (NULL);
@@ -60,19 +60,21 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i] = s1[i];
 		i++;
 	}
+	j = 0;
 	while (s2[j])
 	{
 		str[i + j] = s2[j];
 		j++;
 	}
 	str[i + j] = '\0';
-	return (free(s1), free(s2), str);
+	return (free(*s1), str);
 }
-char	*ft_substr(char *s, unsigned int start,
+char	*ft_substr(char **s, unsigned int start,
 size_t len)
 {
 	char	*sub;
 	size_t	s_len;
+	size_t	i;
 
 	s_len = ft_strlen(s);
 	if (start >= s_len)
@@ -82,6 +84,9 @@ size_t len)
 	sub = malloc(len + 1);
 	if (!sub)
 		return (NULL);
-	ft_strlcpy(sub, &s[start], len + 1);
+	i = 0;
+	while (start < len)
+		sub[i++] == (*s)[start++];
+	sub[i] = '\0';
 	return (sub);
 }
