@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/18 19:14:38 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/24 20:59:57 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/24 21:24:22 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	new_rest(char **rest)
 	}
 }
 
-char	*get_line(char *rest)
+char	*ft_get_line(char *rest)
 {
 	char	*lb;
 	char	*line;
@@ -93,7 +93,7 @@ char	*get_next_line(int fd)
 		rest = NULL;
 		return (NULL);
 	}
-	line = get_line(rest);
+	line = ft_get_line(rest);
 	if (!line || !(*line))
 	{
 		free(line);
