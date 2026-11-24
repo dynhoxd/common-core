@@ -6,17 +6,17 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 17:39:24 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/23 22:12:37 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/24 20:59:00 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	counter;
 
-	if(!s)
+	if (!s)
 		return (0);
 	counter = 0;
 	while (*s++)
@@ -29,7 +29,7 @@ char	*ft_strchr(char *s, int c)
 	char	ch;
 
 	ch = (char)c;
-	if(!s)
+	if (!s)
 		return (NULL);
 	while (*s)
 	{
@@ -41,21 +41,18 @@ char	*ft_strchr(char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
-char	*ft_strjoin(char **s1, char *s2)
+
+char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	s1_len;
-	size_t	s2_len;
 	size_t	i;
 	size_t	j;
 	char	*str;
 
-	s1_len = ft_strlen((char *)s1);
-	s2_len = ft_strlen((char *)*s2);
-	str = malloc(s1_len + s2_len + 1);
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (s1 && s1[i])
 	{
 		str[i] = s1[i];
 		i++;
@@ -67,9 +64,10 @@ char	*ft_strjoin(char **s1, char *s2)
 		j++;
 	}
 	str[i + j] = '\0';
-	return (free(*s1), str);
+	return (str);
 }
-char	*ft_substr(char **s, unsigned int start,
+
+char	*ft_substr(const char *s, unsigned int start,
 size_t len)
 {
 	char	*sub;
@@ -77,16 +75,17 @@ size_t len)
 	size_t	i;
 
 	s_len = ft_strlen(s);
-	if (start >= s_len)
-		return (ft_strdup(""));
 	if (len > s_len - start)
 		len = s_len - start;
 	sub = malloc(len + 1);
 	if (!sub)
 		return (NULL);
 	i = 0;
-	while (start < len)
-		sub[i++] == (*s)[start++];
+	while (i < len)
+	{
+		sub[i] = s[start + i];
+		i++;
+	}
 	sub[i] = '\0';
 	return (sub);
 }
