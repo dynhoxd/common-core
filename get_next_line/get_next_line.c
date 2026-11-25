@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/18 19:14:38 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/24 21:24:22 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/25 20:06:34 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,38 +55,44 @@ char	*ft_get_line(char *rest)
 	return (line);
 }
 
-int	read_and_join(char **rest, int fd, char *buf)
+int	read_and_join(char **rest, int fd)
 {
 	int		bytes_rd;
 	char	*temp;
+	char	*buf;
 
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!buf)
+		return (-1);
 	bytes_rd = 1;
 	while (bytes_rd > 0 && (!(*rest) || !ft_strchr(*rest, '\n')))
 	{
 		bytes_rd = read(fd, buf, BUFFER_SIZE);
 		if (bytes_rd == -1)
-			return (-1);
+			return (free(buf), -1);
 		if (bytes_rd > 0)
 		{
 			buf[bytes_rd] = '\0';
 			temp = ft_strjoin(*rest, buf);
+			if (!temp)
+				return (free(buf), -1);
 			free(*rest);
 			*rest = temp;
 		}
 	}
+	free(buf);
 	return (bytes_rd);
 }
 
 char	*get_next_line(int fd)
 {
-	char		buf[BUFFER_SIZE + 1];
 	ssize_t		bytes_rd;
 	char		*line;
 	static char	*rest;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	bytes_rd = read_and_join(&rest, fd, buf);
+	bytes_rd = read_and_join(&rest, fd);
 	if (bytes_rd == -1)
 	{
 		free(rest);
@@ -105,3 +111,19 @@ char	*get_next_line(int fd)
 	new_rest(&rest);
 	return (line);
 }
+// #include <fcntl.h>
+// #include "stdio.h"
+
+// int	main(void)
+// {
+// 	int		fd;
+// 	char	*line;
+
+// 	fd = open("exemp.txt", O_RDONLY);
+// 	while ((line = get_next_line(fd)))
+// 	{
+// 		printf("%s", line);
+// 		free(line);
+// 	}
+// 	return (0);
+// }

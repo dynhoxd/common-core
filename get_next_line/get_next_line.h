@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 17:39:37 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/24 21:24:02 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/25 16:30:59 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlen(const char *s);
 char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
-int		read_and_join(char **rest, int fd, char *buf);
+int		read_and_join(char **rest, int fd);
 char	*ft_get_line(char *rest);
 void	new_rest(char **rest);
 
