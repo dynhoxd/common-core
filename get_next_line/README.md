@@ -47,7 +47,7 @@ command (for that, use the flag '-D BUFFER_SIZE=<number>'), if not this way spec
 it'll be set as 1024 (bytes). The buffer size is delimiter of how many characters will
 be read at a time. On success, a string(char *) will be returned.
 
-Exemple: `cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 <files>.c`
+Exemple of use: `cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 <files>.c`
 ```
 #include <fcntl.h>
 #include "stdio.h"

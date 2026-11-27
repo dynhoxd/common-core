@@ -6,7 +6,7 @@
 /*   By: jabernar <jabernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/18 19:14:38 by jabernar          #+#    #+#             */
-/*   Updated: 2026/11/25 20:06:34 by jabernar         ###   ########.fr       */
+/*   Updated: 2026/11/27 15:54:29 by jabernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,16 @@ void	new_rest(char **rest)
 	if (!*rest)
 		return ;
 	lb = ft_strchr(*rest, '\n');
-	if (!lb)
+	if (!lb || !*(lb + 1))
 	{
 		free(*rest);
 		*rest = NULL;
 		return ;
 	}
 	lb++;
-	if (*lb)
-	{
-		temp = ft_substr(lb, 0, ft_strlen(lb));
-		free(*rest);
-		*rest = temp;
-	}
-	else
-	{
-		free(*rest);
-		*rest = NULL;
-	}
+	temp = ft_substr(lb, 0, ft_strlen(lb));
+	free(*rest);
+	*rest = temp;
 }
 
 char	*ft_get_line(char *rest)
@@ -100,11 +92,9 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	line = ft_get_line(rest);
-	if (!line || !(*line))
+	if (!line)
 	{
-		free(line);
 		free(rest);
-		line = NULL;
 		rest = NULL;
 		return (NULL);
 	}
